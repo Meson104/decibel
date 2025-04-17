@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
         gradient: LinearGradient(
           colors: [Pallete.gradient1, Pallete.gradient2],
           begin: Alignment.bottomLeft,
@@ -18,14 +19,16 @@ class CustomButton extends StatelessWidget {
         ),
       ),
       child: ElevatedButton(
-        onPressed: () {},
+        onPressed: onTap,
         style: ElevatedButton.styleFrom(
-            fixedSize: const Size(395, 55),
+            fixedSize: const Size(350, 55),
             backgroundColor: Pallete.transparentColor,
             shadowColor: Pallete.transparentColor),
         child: Text(
           buttonText,
-          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+          style: TextStyle(
+            fontSize: 18,
+          ),
         ),
       ),
     );

@@ -7,16 +7,20 @@ class AppTheme {
     brightness: Brightness.dark,
   ).copyWith(
     scaffoldBackgroundColor: Pallete.backgroundColor,
-    inputDecorationTheme: const InputDecorationTheme(
-        contentPadding: EdgeInsets.all(22),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(
-            color: Pallete.gradient2,
-          ),
+    inputDecorationTheme: InputDecorationTheme(
+      contentPadding: const EdgeInsets.all(22),
+      focusedBorder: OutlineInputBorder(
+        borderSide: const BorderSide(
+          color: Pallete.gradient2,
         ),
-        enabledBorder: OutlineInputBorder(
-            borderSide: BorderSide(
-          color: Pallete.borderColor,
-        ))),
+        borderRadius: BorderRadius.circular(10),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          color: Colors.white24,
+        ),
+        borderRadius: BorderRadius.circular(10),
+      ),
+    ),
   );
 }

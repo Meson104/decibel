@@ -1,18 +1,22 @@
 import 'package:client/core/theme/app_palette.dart';
+import 'package:client/features/auth/repositories/auth_remote_repository.dart';
 import 'package:client/features/auth/view/pages/login_page.dart';
 import 'package:client/features/auth/view/widgets/custom_button.dart';
 import 'package:client/features/auth/view/widgets/custom_field.dart';
+import 'package:client/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fpdart/fpdart.dart' as fp;
 
-class SignupPage extends StatefulWidget {
+class SignupPage extends ConsumerStatefulWidget {
   const SignupPage({super.key});
 
   @override
-  State<SignupPage> createState() => _SignupPageState();
+  ConsumerState<SignupPage> createState() => _SignupPageState();
 }
 
-class _SignupPageState extends State<SignupPage> {
+class _SignupPageState extends ConsumerState<SignupPage> {
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -21,7 +25,7 @@ class _SignupPageState extends State<SignupPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(AssetImage('assets/images/login1.jpg'), context);
+    precacheImage(AssetImage('assets/images/login.jpg'), context);
   }
 
   @override
@@ -35,27 +39,29 @@ class _SignupPageState extends State<SignupPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isLoading = ref.watch(authViewModelProvider)?.isLoading == true;
     return Scaffold(
       // appBar: AppBar(),
       body: Stack(
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/login2.jpg',
+              'assets/images/register.jpg',
               fit: BoxFit.cover,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Form(
               key: formkey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Spacer(),
                   Text(
-                    'Sign Up.',
+                    "Let's create your account.",
                     style: TextStyle(
-                      fontSize: 50,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
@@ -82,11 +88,21 @@ class _SignupPageState extends State<SignupPage> {
                     controller: passwordController,
                   ),
                   SizedBox(
-                    height: 24,
+                    height: 30,
                   ),
                   CustomButton(
                     buttonText: "Sign Up",
-                    onTap: () {},
+                    onTap: () async {
+                      if (formkey.currentState!.validate()) {
+                        await ref
+                            .read(authViewModelProvider.notifier)
+                            .signUpUser(
+                              name: nameController.text,
+                              email: emailController.text,
+                              password: passwordController.text,
+                            );
+                      }
+                    },
                   ),
                   const SizedBox(
                     height: 20,
@@ -99,12 +115,15 @@ class _SignupPageState extends State<SignupPage> {
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => _navigate(context),
-                            text: "Sign In",
+                            text: " Sign In",
                             style: TextStyle(
                               color: Pallete.gradient2,
                               fontFamily: 'Lato',
                             ))
-                      ]))
+                      ])),
+                  Spacer(
+                    flex: 2,
+                  )
                 ],
               ),
             ),
@@ -118,7 +137,7 @@ class _SignupPageState extends State<SignupPage> {
 void _navigate(BuildContext context) {
   Navigator.of(context).pushReplacement(
     PageRouteBuilder(
-      transitionDuration: Duration(milliseconds: 600), // Smooth transition time
+      transitionDuration: Duration(milliseconds: 400), // Smooth transition time
       pageBuilder: (context, animation, secondaryAnimation) => LoginPage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeTransition(

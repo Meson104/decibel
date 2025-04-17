@@ -1,9 +1,11 @@
 import 'package:client/core/theme/app_palette.dart';
+import 'package:client/features/auth/repositories/auth_remote_repository.dart';
 import 'package:client/features/auth/view/pages/signup_page.dart';
 import 'package:client/features/auth/view/widgets/custom_button.dart';
 import 'package:client/features/auth/view/widgets/custom_field.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fpdart/fpdart.dart' as fp;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -20,7 +22,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    precacheImage(AssetImage('assets/images/login2.jpg'), context);
+    precacheImage(AssetImage('assets/images/login.jpg'), context);
   }
 
   @override
@@ -39,26 +41,27 @@ class _LoginPageState extends State<LoginPage> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'assets/images/login1.jpg',
+              'assets/images/login.jpg',
               fit: BoxFit.cover,
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Form(
               key: formkey,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                // mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  Spacer(),
                   Text(
-                    'Sign In.',
+                    "Sign in to your account.",
                     style: TextStyle(
-                      fontSize: 50,
+                      fontSize: 40,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(
-                    height: 30,
+                    height: 50,
                   ),
                   CustomField(
                     hintText: 'Email',
@@ -77,25 +80,40 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   CustomButton(
                     buttonText: "Sign In",
-                    onTap: () {},
+                    onTap: () async {
+                      final res = await AuthRemoteRepository().login(
+                        email: emailController.text,
+                        password: passwordController.text,
+                      );
+                      final val = switch (res) {
+                        fp.Left(value: final l) => l,
+                        fp.Right(value: final r) => r,
+                      };
+                      print(val);
+                    },
                   ),
                   const SizedBox(
                     height: 20,
                   ),
                   RichText(
-                      text: TextSpan(
-                          text: "Don't have an account ? ",
-                          style: TextStyle(fontFamily: 'Lato'),
-                          children: [
+                    text: TextSpan(
+                      text: "Don't have an account ? ",
+                      style: TextStyle(fontFamily: 'Lato'),
+                      children: [
                         TextSpan(
                             recognizer: TapGestureRecognizer()
                               ..onTap = () => _navigate(context),
-                            text: "Sign Up",
+                            text: " Sign Up",
                             style: TextStyle(
                               color: Pallete.gradient2,
                               fontFamily: 'Lato',
                             ))
-                      ]))
+                      ],
+                    ),
+                  ),
+                  Spacer(
+                    flex: 2,
+                  ),
                 ],
               ),
             ),
@@ -109,7 +127,7 @@ class _LoginPageState extends State<LoginPage> {
 void _navigate(BuildContext context) {
   Navigator.of(context).pushReplacement(
     PageRouteBuilder(
-      transitionDuration: Duration(milliseconds: 600), // Smooth transition time
+      transitionDuration: Duration(milliseconds: 400), // Smooth transition time
       pageBuilder: (context, animation, secondaryAnimation) => SignupPage(),
       transitionsBuilder: (context, animation, secondaryAnimation, child) {
         return FadeTransition(

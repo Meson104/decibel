@@ -33,7 +33,7 @@ end
 # Unset irrelevant variables.
 deactivate nondestructive
 
-set -gx VIRTUAL_ENV "/home/kar/Kart/Projects/Flutter Projects/decibel/server/venv"
+set -gx VIRTUAL_ENV "/home/kar/Kart/Projects/Flutter/decibel/server/venv"
 
 set -gx _OLD_VIRTUAL_PATH $PATH
 set -gx PATH "$VIRTUAL_ENV/bin" $PATH
