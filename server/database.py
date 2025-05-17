@@ -2,8 +2,11 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
+from config import Settings
 
-DATABASE_URI = 'postgresql://postgres:whatswithdaelephant@localhost:5432/decibel'
+settings = Settings()
+
+DATABASE_URI = settings.POSTGRES_URL
 
 engine = create_engine(DATABASE_URI)
 SessionLocal = sessionmaker(autoflush=False,autocommit = False , bind = engine)

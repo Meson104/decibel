@@ -2,14 +2,17 @@
 import uuid
 from venv import create
 import bcrypt
-from fastapi import Depends, HTTPException
+from fastapi import Depends, HTTPException, Header
 from database import db_access
+from middlewares.auth_middleware import auth_middleware
 from models.user import User
 from pydantic_schemas.create_user import createUser
 from fastapi import APIRouter
 from sqlalchemy.orm import Session
-
+import jwt
 from pydantic_schemas.login_user import loginUser 
+from config import Settings
+settings = Settings()
 
 
 router = APIRouter() 
@@ -44,4 +47,18 @@ def login(user : loginUser, db:Session = Depends(db_access)):
     if not password_matches:
         raise HTTPException(400,"Incorrect credentials, try again")
     
-    return user_exists
+    token = jwt.encode({'id' : user_exists.id}, settings.AUTH_ENCODING_KEY)
+
+    
+    return {'token' : token , 'user': user_exists }
+
+@router.get('/')
+def current_user_data(db:Session = Depends(db_access),userdata = Depends(auth_middleware)):
+    # get the token from the headers
+    # decode the token
+    # get the user id from the token
+    # request postgres to retrieve the user with that id 
+    user = db.query(User).filter(User.id == userdata['uid']).first()
+    if not user:
+        raise HTTPException(404,"User not found")
+    return user 
