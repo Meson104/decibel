@@ -3,6 +3,7 @@ import 'package:client/core/theme/themes.dart';
 import 'package:client/features/auth/view/pages/login_page.dart';
 import 'package:client/features/auth/view/pages/signup_page.dart';
 import 'package:client/features/auth/viewmodel/auth_viewmodel.dart';
+import 'package:client/features/home/view/pages/home_page.dart';
 
 import 'package:client/features/home/view/pages/upload_song_page.dart';
 
@@ -30,7 +31,7 @@ class MyApp extends ConsumerWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: AppTheme.darkThemeMode,
-      home: currentUser == null ? const SignupPage() : const UploadSongPage(),
+      home: currentUser == null ? const SignupPage() : const HomePage(),
     );
   }
 }

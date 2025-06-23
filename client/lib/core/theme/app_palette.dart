@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Pallete {
   static const cardColor = Color.fromRGBO(30, 30, 30, 1);
   static const greenColor = Colors.green;
-  static const subtitleText = Color(0xffa7a7a7);
+  static const subtitleText = Color.fromARGB(255, 222, 208, 208);
   static const inactiveBottomBarItemColor = Color(0xffababab);
 
   static const Color backgroundColor = Color.fromRGBO(18, 18, 18, 1);
