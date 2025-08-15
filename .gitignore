@@ -1,0 +1,47 @@
+# =========================================
+# General ignores
+# =========================================
+*.log
+.DS_Store
+*.swp
+*.swo
+
+# =========================================
+# Python ignores (server)
+# =========================================
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+
+# Virtual environment
+venv/
+.env
+.env.*
+
+# =========================================
+# Flutter ignores (client)
+# =========================================
+.dart_tool/
+.packages
+.pub-cache/
+build/
+.flutter-plugins
+.flutter-plugins-dependencies
+Generated.xcconfig
+*.g.dart
+
+# Android
+client/android/local.properties
+client/android/app/debug
+client/android/app/profile
+client/android/app/release
+
+# iOS
+client/ios/Flutter/Flutter.framework
+client/ios/Flutter/Flutter.podspec
+client/ios/Flutter/Generated.xcconfig
+client/ios/Runner/GeneratedPluginRegistrant.*
+Pods/
