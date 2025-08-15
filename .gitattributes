@@ -1,11 +1,16 @@
-# Flutter platform boilerplate
+# =========================================
+# Decibel Project - Linguist Overrides
+# =========================================
+
+# --- Flutter platform boilerplate ---
 client/android/** linguist-vendored
 client/ios/** linguist-vendored
 client/macos/** linguist-vendored
 client/windows/** linguist-vendored
 client/linux/** linguist-vendored
+client/web/** linguist-vendored
 
-# Native sources in Flutter client
+# --- Native & generated files ---
 client/**/*.cmake linguist-vendored
 client/**/*.cpp linguist-vendored
 client/**/*.cc linguist-vendored
@@ -17,9 +22,8 @@ client/**/*.swift linguist-vendored
 client/**/*.m linguist-vendored
 client/**/*.mm linguist-vendored
 
-# Generated Dart files
+# --- Dart generated code ---
 client/**/*.g.dart linguist-generated
 
-# Backend env files
-server/.env export-ignore
-server/.env.* export-ignore
+# --- Keep Dart counted ---
+client/lib/** -linguist-vendored
