@@ -6,10 +6,11 @@ from config import Settings
 
 settings = Settings()
 
-DATABASE_URI = settings.POSTGRES_URL
+DATABASE_URI = DATABASE_URI = settings.POSTGRES_URL
 
 engine = create_engine(DATABASE_URI)
-SessionLocal = sessionmaker(autoflush=False,autocommit = False , bind = engine)
+SessionLocal = sessionmaker(autoflush=False, autocommit=False, bind=engine)
+
 
 def db_access():
     db = SessionLocal()
@@ -18,7 +19,3 @@ def db_access():
 
     finally:
         db.close()
-
-
-
-
