@@ -61,8 +61,8 @@ flowchart TD
 
     subgraph Backend["FastAPI Backend"]
         D1[JWT Auth Service]
-        D2[Media Service (Cloudinary)]
-        D3[Database Service (PostgreSQL via SQLAlchemy)]
+        D2[Media Service Cloudinary]
+        D3[Database Service PostgreSQL via SQLAlchemy]
     end
 
     %% Connections between layers
