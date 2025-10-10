@@ -92,31 +92,31 @@ Here's how you can quickly set it up and run the backend (FastAPI) as well as th
 
 1. Once you clone , cd to the server directory :
    
-bash
+```bash
    cd server
-
+```
 2. In the server directory, create a python virtual environment (Venv). Recommending this to avoid version issues and to make sure one has all the dependencies.
 
    
-bash
+```bash
    python -m venv venv
    source venv/bin/activate   # Linux/Mac
    venv\Scripts\activate      # Windows
-
+```
 
 3. Install dependencies from requirements.txt :
 
    
-bash
+```bash
    pip install -r requirements.txt
-
+```
 
 4. Start the server :
 
    
-bash
+```bash
    uvicorn main:app -reload
-
+```
 
 5. All set :
    If things are good, the backend should now be running at [text](http://127.0.0.1:8000)
@@ -126,18 +126,19 @@ bash
 1. cd into the frontend directory
 
    
-bash
+```bash
    cd frontend
-
+```
 
 2. Install flutter dependencies :
 
    
-bash
+```bash
    flutter pub get
-
+```
 
 3. Run the flutter app
    
-bash
+```bash
    flutter run
+```
