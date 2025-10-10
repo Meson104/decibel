@@ -1,7 +1,7 @@
 # Decibel
 
 <p align="center">
-  <img src="client/assets/images/decibel_illustration.png" 
+  <img src="media/images/logo.png" 
        alt="App Icon" 
        width="200"
        style="border-radius: 50%;"/>
