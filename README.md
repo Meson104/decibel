@@ -1,8 +1,12 @@
 # Decibel
 
 <p align="center">
-  <img src="client/assets/images/decibel_illustration.png" alt="App Icon" width="300"/>
+  <img src="client/assets/images/decibel_illustration.png" 
+       alt="App Icon" 
+       width="200"
+       style="border-radius: 50%;"/>
 </p>
+
 
 
 **A Full-Stack Music Streaming Mobile App**  
@@ -124,9 +128,9 @@ Here's how you can quickly set it up and run the backend (FastAPI) as well as th
 ```
 
 5. All set :
-   If things are good, the backend should now be running at [text](http://127.0.0.1:8000)
+   If things are good, the backend should now be running.
 
-### 🔹 Frontend (FastAPI)
+### 🔹 Frontend (Flutter)
 
 1. cd into the frontend directory
 
