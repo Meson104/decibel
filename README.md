@@ -33,16 +33,17 @@ It’s built with a **Flutter MVVM architecture** for structured state managemen
 
 ---
 
-## ⚙️ Architecture  
+## ⚙️ Architecture
 
 ```mermaid
 flowchart TD
-    A[Flutter App (MVVM)] -->|API Requests| B[FastAPI Server]
-    B -->|ORM| C[SQLAlchemy]
-    C -->|Data Storage| D[PostgreSQL]
-    B -->|Media Upload| E[Cloudinary]
-    A -->|Auth & Tokens| B
-    A -->|Audio Playback| F[Audio Service]
+    A[Flutter App (MVVM)] --> B[FastAPI Server]
+    B --> C[SQLAlchemy ORM]
+    C --> D[PostgreSQL Database]
+    B --> E[Cloudinary (Media Storage)]
+    A --> B
+    A --> F[Audio Playback Service]
+
 
 
 ## Quick Start
