@@ -1,4 +1,6 @@
-# Decibel 🎶  
+# Decibel
+
+![App Icon](client/assets/images/decibel_illustration.png)
 
 **A Full-Stack Music Streaming Mobile App**  
 _Built with Flutter (MVVM) + FastAPI | Powered by PostgreSQL, SQLAlchemy, and Cloudinary_
