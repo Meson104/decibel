@@ -33,16 +33,52 @@ It’s built with a **Flutter MVVM architecture** for structured state managemen
 
 ---
 
-## ⚙️ Architecture
+
+## 🧩 MVVM Architecture Overview
+
+The Decibel app follows the **MVVM (Model-View-ViewModel)** pattern for clean separation of concerns, making it easier to scale and maintain.  
+Here’s how data and control flow across the app and backend:
 
 ```mermaid
 flowchart TD
-    A[Flutter App (MVVM)] --> B[FastAPI Server]
-    B --> C[SQLAlchemy ORM]
-    C --> D[PostgreSQL Database]
-    B --> E[Cloudinary (Media Storage)]
-    A --> B
-    A --> F[Audio Playback Service]
+    subgraph UI[" View (Flutter UI)"]
+        A1[Music Player Screen]
+        A2[Library & History Screens]
+        A3[Floating Audio Player]
+    end
+
+    subgraph VM["ViewModel (Provider)"]
+        B1[AudioPlayerViewModel]
+        B2[AuthViewModel]
+        B3[LibraryViewModel]
+    end
+
+    subgraph M["Model Layer"]
+        C1[User Model]
+        C2[Track Model]
+        C3[Playback Model]
+    end
+
+    subgraph Backend["FastAPI Backend"]
+        D1[JWT Auth Service]
+        D2[Media Service (Cloudinary)]
+        D3[Database Service (PostgreSQL via SQLAlchemy)]
+    end
+
+    %% Connections between layers
+    A1 --> B1
+    A2 --> B3
+    A3 --> B1
+    B1 --> C3
+    B2 --> C1
+    B3 --> C2
+    C1 --> D1
+    C2 --> D2
+    C3 --> D3
+    D1 --> C1
+    D2 --> C2
+    D3 --> C3
+
 
 
 
