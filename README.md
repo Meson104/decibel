@@ -3,7 +3,6 @@
 <p align="center">
   <img src="media/images/logo.png" 
        alt="App Icon" 
-       height="200"
        width="500"
        style="border-radius: 50%;"/>
 </p>
